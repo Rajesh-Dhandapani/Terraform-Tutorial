@@ -32,6 +32,13 @@ pipeline {
 
         stage('Plan') {
             steps {
+                sh 'terraform init -upgrade'
+                sh 'terraform init -backend=false'
+                sh 'terraform init -get=false'
+                #Skip Plugin initialization
+                sh 'terraform init -get-plugins=false'
+                #Copy a Source Module
+                sh 'terraform init -from-module=MODULE-SOURCE'
                 sh 'pwd;cd terraform/aws-instance-first-script ; terraform init -input=false'
                 sh 'pwd;cd terraform/aws-instance-first-script ; terraform workspace new ${environment}'
                 sh 'pwd;cd terraform/aws-instance-first-script ; terraform workspace select ${environment}'
