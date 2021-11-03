@@ -49,7 +49,7 @@ pipeline {
                 sh 'terraform init -get-plugins=false'
                 
                 sh 'terraform init -from-module=MODULE-SOURCE'*/
-                
+                 sh 'terraform version'
                 sh 'pwd;cd terraform/aws-instance-first-script ; terraform init -input=false'
                 sh 'pwd;cd terraform/aws-instance-first-script ; terraform workspace new ${environment}'
                 sh 'pwd;cd terraform/aws-instance-first-script ; terraform workspace select ${environment}'
