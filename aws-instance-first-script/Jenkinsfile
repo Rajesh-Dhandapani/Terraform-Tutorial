@@ -19,7 +19,8 @@ pipeline {
                 //ansiColor('xterm')
             }*/
     
-  stage('Set Terraform path') {
+    stages {
+        stage('Set Terraform path') {
              steps {
                      script {
                      def tfHome = tool name: 'Terraform'
@@ -27,9 +28,7 @@ pipeline {
                      }
                      sh 'terraform — version'
                   }
-     }
-    
-    stages {
+          }
         stage('checkout') {
             steps {
                  script{
